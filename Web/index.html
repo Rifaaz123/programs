@@ -1,0 +1,63 @@
+
+<html >
+<head>
+  <meta charset="utf-8" />
+  <title>MITS College — Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+
+    body {
+      display: grid;
+      grid-template-rows: 110px 1fr 60px;
+      grid-template-columns: 220px 1fr 260px;
+      grid-template-areas:
+        "header header header"
+        "nav content sidebar"
+        "footer footer footer";
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    #headerFrame { grid-area: header; height: 100%; }
+    #navFrame { grid-area: nav; height: 100%; }
+    #contentFrame { grid-area: content; height: 100%; }
+    #sidebarFrame { grid-area: sidebar; height: 100%; }
+    #footerFrame { grid-area: footer; height: 100%; }
+
+  
+    @media (max-width: 900px) {
+      body {
+        grid-template-rows: 110px auto 1fr 60px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "nav"
+          "content"
+          "footer";
+      }
+      #sidebarFrame { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <iframe src="header.html" id="headerFrame" title="Header"></iframe>
+  <iframe src="nav.html" id="navFrame" name="navFrame" title="Navigation"></iframe>
+  <iframe src="home.html" id="contentFrame" name="contentFrame" title="Content"></iframe>
+  <iframe src="sidebar.html" id="sidebarFrame" title="Sidebar"></iframe>
+  <iframe src="footer.html" id="footerFrame" title="Footer"></iframe>
+</body>
+</html>

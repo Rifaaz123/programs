@@ -1,0 +1,49 @@
+
+<html>
+<head>
+  <title> Background Color Changer</title>
+  <style>
+    body {
+      font-family: serif;
+      text-align: center;
+      margin-top: 100px;
+      transition: background-color 0.5s ease;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Click to change the background color</h2>
+
+  <button onclick="changeColor('#FADADD')">Pink</button>
+  <button onclick="changeColor('#C8E6C9')">Mint</button>
+  <button onclick="changeColor('#D1C4E9')">Lavender</button>
+  <button onclick="changeRandom()">Random Pastel</button>
+
+  <script>
+    function changeColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+
+    function changeRandom() {
+      const colors = ['#FADADD', '#C8E6C9', '#BBDEFB', '#FFF9C4', '#D1C4E9', '#FFE0B2', '#B2EBF2'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = randomColor;
+    }
+  </script>
+
+</body>
+</html>

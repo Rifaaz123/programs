@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript String and Math Methods </title>
+<style>
+  body {
+    background-color: #e8f5e9; 
+    padding: 25px;
+    color: #2e3b4e;
+  }
+  h2 {
+    color: #00796b; 
+  }
+  label {
+    font-weight: bold;
+  }
+  input, button {
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #b0bec5;
+    border-radius: 5px;
+  }
+  button {
+    background-color: #004d40;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #00695c;
+  }
+  .output {
+    background-color: #d7fff1;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align:center
+  }
+  h3 {
+    color: #388e3c;
+  }
+.line {
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+
+<body>
+<center>
+  <h2>JavaScript String and Math Functions</h2>
+  
+  <label>Enter any text:</label><br>
+  <input type="text" id="textInput" placeholder="Enter a string"><br><br>
+  
+  <label>Enter a number:</label><br>
+  <input type="number" id="numberInput" placeholder="Enter a number"><br><br>
+  
+  <button onclick="displayOutput()">Display Results</button>
+
+  <div class="output" id="outputArea"></div>
+</center>
+<script>
+function displayOutput() {
+  let textValue = document.getElementById("textInput").value;
+  let numberValue = Number(document.getElementById("numberInput").value);
+  
+  let output = "";
+  
+  output += "<h3>String Functions</h3>";
+  output += "<div>Entered text: " + textValue + "</div><br><br>";
+  output += "<div> Length: " + textValue.length + "<br>";
+  output += "<div> Uppercase: " + textValue.toUpperCase() + "</div><br>";
+  output += "<div> Lowercase: " + textValue.toLowerCase() + "</div><br>";
+  output += "<div> Substring (0–4): " + textValue.substring(0,4) + "</div><br>";
+  output += "<div> Replace first word with 'Hi': " + textValue.replace(/\w+/, "Hi") + "</div><br>";
+  output += "<div> Index of first 'a': " + textValue.indexOf("a") + "</div><br><br>";
+
+  output += "<h3>Math Functions</h3>";
+  output += "Entered number: " + numberValue + "<br><br>";
+  output += " Square root: " + Math.sqrt(numberValue).toFixed(2) + "<br>";
+  output += " Power (num³): " + Math.pow(numberValue, 3) + "<br>";
+  output += " Absolute value: " + Math.abs(numberValue) + "<br>";
+  output += " Round value: " + Math.round(numberValue) + "<br>";
+  output += " Min of (num, 10): " + Math.min(numberValue, 10) + "<br>";
+  output += " Random number (0–100): " + (Math.random() * 100).toFixed(2) + "<br>";
+
+  document.getElementById("outputArea").innerHTML = output;
+}
+</script>
+</body>
+</html>

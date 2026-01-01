@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e2fdfe;
+      text-align: center;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #141010;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+    }
+    th {
+      background-color: #997c7c;
+    }
+  </style>
+</head>
+<body>
+  <h2>Calendar Generator</h2>
+  <label>Enter a Year: <input type="number" id="year" value="2020"></label><br><br>
+  <label>Enter a Month: <input type="number" id="month" value="5" min="1" max="12"></label><br><br>
+
+
+  <h3 id="calendarTitle"></h3>
+  <div id="calendar"></div>
+<button onclick="generateCalendar()">Calendar</button>
+  <script>
+    function generateCalendar() {
+      const year = parseInt(document.getElementById("year").value);
+      const month = parseInt(document.getElementById("month").value) - 1; // JS months are 0-indexed
+      const calendarDiv = document.getElementById("calendar");
+      const title = document.getElementById("calendarTitle");
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      title.innerHTML = `<strong>${year}</strong><br>${monthNames[month]}`;
+
+      const firstDay = new Date(year, month, 1).getDay(); // 0 = Sunday
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      let table = "<table><tr>";
+      const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      for (let d of days) {
+        table += `<th>${d}</th>`;
+      }
+      table += "</tr><tr>";
+
+      for (let i = 0; i < firstDay; i++) {
+        table += "<td></td>";
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        table += `<td>${day}</td>`;
+        if ((day + firstDay) % 7 === 0) {
+          table += "</tr><tr>";
+        }
+      }
+
+      table += "</tr></table>";
+      calendarDiv.innerHTML = table;
+    }
+
+    // Generate default calendar on load
+    window.onload = generateCalendar;
+  </script>
+</body>
+</html>

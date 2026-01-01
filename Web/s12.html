@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simple Online Exam</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f6f8fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 10px;
+  }
+
+  .card {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 700px;
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #222;
+  }
+
+  .lead {
+    text-align: center;
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .q {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+  }
+
+  .q:last-child {
+    border-bottom: none;
+  }
+
+  .q h3 {
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+
+  .options label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+
+  input[type="text"] {
+    padding: 5px 8px;
+    font-size: 15px;
+    width: 150px;
+  }
+
+  .controls {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  button.secondary {
+    background: #6c757d;
+  }
+
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  #result {
+    margin-top: 25px;
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  footer.small {
+    text-align: center;
+    color: #888;
+    margin-top: 25px;
+    font-size: 13px;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  .modal-content h3 {
+    margin-bottom: 10px;
+  }
+
+  .close-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Online Exam</h1>
+
+      <form id="examForm">
+        <div class="q">
+          <h3>1. Capital of France?</h3>
+          <label><input type="radio" name="q1" value="a"> Berlin</label>
+          <label><input type="radio" name="q1" value="b"> Madrid</label>
+          <label><input type="radio" name="q1" value="c"> Paris</label>
+          <label><input type="radio" name="q1" value="d"> Rome</label>
+        </div>
+
+        <div class="q">
+          <h3>2. Programming languages:</h3>
+          <label><input type="checkbox" name="q2" value="a"> HTML</label>
+          <label><input type="checkbox" name="q2" value="b"> Python</label>
+          <label><input type="checkbox" name="q2" value="c"> CSS</label>
+          <label><input type="checkbox" name="q2" value="d"> JavaScript</label>
+        </div>
+
+        <div class="q">
+          <h3>3. 7 × 8 =</h3>
+          <input type="text" name="q3" size="4">
+        </div>
+
+        <div class="q">
+          <h3>4. HTML tag for hyperlink:</h3>
+          <label><input type="radio" name="q4" value="a"> &lt;img&gt;</label>
+          <label><input type="radio" name="q4" value="b"> &lt;a&gt;</label>
+          <label><input type="radio" name="q4" value="c"> &lt;link&gt;</label>
+          <label><input type="radio" name="q4" value="d"> &lt;div&gt;</label>
+        </div>
+
+        <div class="q">
+          <h3>5. Red Planet?</h3>
+          <label><input type="radio" name="q5" value="a"> Venus</label>
+          <label><input type="radio" name="q5" value="b"> Mars</label>
+          <label><input type="radio" name="q5" value="c"> Jupiter</label>
+          <label><input type="radio" name="q5" value="d"> Saturn</label>
+        </div>
+
+        <div class="q">
+          <h3>6. Strict equality operator in JS?</h3>
+          <label><input type="radio" name="q6" value="a"> =</label>
+          <label><input type="radio" name="q6" value="b"> ==</label>
+          <label><input type="radio" name="q6" value="c"> ===</label>
+          <label><input type="radio" name="q6" value="d"> !==</label>
+        </div>
+
+        <div class="controls">
+          <button type="button" id="submitBtn">Submit</button>
+          <button type="reset" id="resetBtn" class="secondary">Reset</button>
+        </div>
+      </form>
+
+      <div id="result"></div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="popup" class="modal">
+    <div class="modal-content">
+      <h3>ANSWER ALL QUESTIONS</h3>
+    
+      <button class="close-btn" id="closePopup">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const key = {
+      q1: 'c',
+      q2: ['b', 'd'],
+      q3: '56',
+      q4: 'b',
+      q5: 'b',
+      q6: 'c'
+    };
+
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("closePopup");
+    const showPopup = () => popup.style.display = "flex";
+    const hidePopup = () => popup.style.display = "none";
+    closePopup.onclick = hidePopup;
+    window.onclick = (e) => { if (e.target === popup) hidePopup(); };
+
+    document.getElementById("submitBtn").onclick = () => {
+      const form = document.forms.examForm;
+      let score = 0;
+
+      const getVals = (name) => {
+        const els = form[name];
+        if (!els) return null;
+        if (els.type === "text") return els.value.trim();
+        const vals = [...els].filter(e => e.checked).map(e => e.value);
+        return els[0].type === "radio" ? vals[0] || "" : vals;
+      };
+
+      for (let i = 1; i <= 6; i++) {
+        const ans = getVals("q" + i);
+        if (!ans || (Array.isArray(ans) && ans.length === 0)) {
+          showPopup();
+          return;
+        }
+      }
+
+      const equal = (a, b) => Array.isArray(a) && Array.isArray(b)
+        ? a.sort().join() === b.sort().join()
+        : a === b;
+
+      const results = [];
+      for (let i = 1; i <= 6; i++) {
+        const q = "q" + i, ans = getVals(q);
+        const correct = equal(ans, key[q]);
+        if (correct) score++;
+        results.push(`Q${i}: ${correct ? "✅ CORRECT" : "❌ INCORRECT"} (Answer: ${key[q]})`);
+      }
+
+      const percent = Math.round((score / 6) * 100);
+      document.getElementById("result").innerHTML =
+        `<h3>Score: ${score}/6 (${percent}%)</h3><p>${results.join("<br>")}</p>`;
+
+      document.getElementById("submitBtn").disabled = true;
+    };
+
+    document.getElementById("resetBtn").onclick = () => {
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("submitBtn").disabled = false;
+    };
+  </script>
+</body>
+</html>

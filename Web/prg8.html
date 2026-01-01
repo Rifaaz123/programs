@@ -1,0 +1,80 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> addEventListener </title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #C8E6C9;
+    margin: 50px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  button {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: teal;
+  }
+
+  #demo {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 50px;
+  }
+</style>
+
+</head>
+
+<body>
+
+<h2>JavaScript addEventListener</h2>
+<button id="btn">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+  const button = document.getElementById("btn");
+
+  button.addEventListener("mouseover", handleMouseOver);
+  button.addEventListener("click", handleClick);
+  button.addEventListener("mouseout", handleMouseOut);
+
+  function handleMouseOver() {
+    document.getElementById("demo").innerHTML += "MouseOver<br>";
+  }
+
+  function handleClick() {
+    document.getElementById("demo").innerHTML += "clicked<br>";
+  }
+
+  function handleMouseOut() {
+    document.getElementById("demo").innerHTML += "MouseOut <br>";
+  }
+</script>
+
+</body>
+</html>

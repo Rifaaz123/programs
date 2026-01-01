@@ -1,0 +1,88 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image and Text Hover</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin-top: 50px;
+  }
+
+  #image-container {
+    position: relative;
+    width: 300px;
+    height: 220px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  #image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #image-text {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  #hidden-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+
+  #hidden-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+</head>
+
+<body>
+
+<h2>JavaScript Event Handling</h2>
+
+
+<div id="image-container">
+  <img src="bike.jpg" alt="Bike Image">
+  <div id="hidden-content">
+    <img src="car.jpg" alt="Car Image">
+  </div>
+</div>
+
+<p id="image-text">I see a car here!!</p>
+
+<script>
+  const imageContainer = document.getElementById('image-container');
+  const hiddenContent = document.getElementById('hidden-content');
+  const imageText = document.getElementById('image-text');
+
+  imageContainer.addEventListener('mouseover', () => {
+    hiddenContent.style.display = 'block';
+    imageText.textContent = 'Hey! I am a car now!!';
+  });
+
+  imageContainer.addEventListener('mouseout', () => {
+    hiddenContent.style.display = 'none';
+    imageText.textContent = 'I see a Bike';
+  });
+</script>
+
+</body>
+</html>

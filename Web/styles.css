@@ -1,0 +1,94 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f5ede3;
+  color: #3b2f2f;
+  line-height: 1.7;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #8b5a2b, #b87333);
+  color: #fff9f0;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-size: 2.6em;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 1.1em;
+  margin-top: 8px;
+  color: #fcebd6;
+}
+
+/* Navigation */
+nav {
+  background-color: #7b3f00;
+  text-align: center;
+  padding: 12px 0;
+}
+
+nav a {
+  color: #fff4e3;
+  text-decoration: none;
+  margin: 0 18px;
+  font-weight: bold;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffe5b4;
+  border-bottom: 2px solid #ffe5b4;
+}
+
+/* Layout */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 25px auto;
+}
+
+/* Sections */
+.section {
+  background-color: #fffdf9;
+  padding: 25px;
+  margin-bottom: 35px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139, 90, 43, 0.15);
+}
+
+.section h2 {
+  color: #8b4513;
+  border-bottom: 2px solid #b87333;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* Gallery */
+.image-block {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.image-block img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.caption {
+  font-size: 0.9em;
+  color: #6b4f2e;
+  margin-top: 5px;
+}
+
+/* Footer */
+footer {
+  background-color: #4b2e05;
+  color: #fff8f0;

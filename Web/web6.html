@@ -1,0 +1,77 @@
+<html>
+<head>
+<title></title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #C8E6C9;
+    padding: 20px;
+    color: #43b581;
+  }
+  h2 {
+    color: #222;
+  }
+  input, button {
+    padding: 8px;
+    margin-top: 6px;
+    background: #2c2f33;
+    color: #BBDEFB;
+    border: 1px solid #43b581;
+    border-radius: 4px;
+  }
+  button {
+    cursor: pointer;
+    font-weight: bold;
+    background: #43b581;
+    color: #23272a;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  button:hover {
+    background: #B2EBF2;
+  }
+  .output {
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    color: #222;
+  }
+</style>
+</head>
+<body>
+  <h2>String and Math Object Functions</h2>
+  <label>Enter any text:</label><br>
+  <input type="text" id="userText" placeholder="Type something..."><br><br>
+  <label>Enter a number:</label><br>
+  <input type="number" id="userNumber" placeholder="Enter a number"><br><br>
+  <button onclick="showResults()">Show Results</button>
+  <div class="output" id="result"></div>
+<script>
+function showResults() {
+  let text = document.getElementById("userText").value;
+  let num = Number(document.getElementById("userNumber").value);
+  let result = "";
+  result += "<h3>String Functions</h3>";
+  result += "Original text: " + text + "<br><br>";
+  result += "1. Length: " + text.length + "<br>";
+  result += "2. To Uppercase: " + text.toUpperCase() + "<br>";
+  result += "3. To Lowercase: " + text.toLowerCase() + "<br>";
+  result += "4. Slice (0,5): " + text.slice(0,5) + "<br>";
+  result += "5. Replace first word with 'Hello': " + text.replace(/\w+/, "Hello") + "<br>";
+  result += "6. Character at position 2: " + text.charAt(2) + "<br><br>";
+//math function
+  result += "<h3>Math Functions</h3>";
+  result += "Original number: " + num + "<br><br>";
+  result += "1. Square root: " + Math.sqrt(num).toFixed(2) + "<br>";
+  result += "2. Power (num²): " + Math.pow(num, 2) + "<br>";
+  result += "3. Absolute value: " + Math.abs(num) + "<br>";
+  result += "4. Ceiling value: " + Math.ceil(num) + "<br>";
+  result += "5. Floor value: " + Math.floor(num) + "<br>";
+  result += "6. Random number (0–10): " + (Math.random() * 10).toFixed(2) + "<br>";
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+</body>
+</html>
